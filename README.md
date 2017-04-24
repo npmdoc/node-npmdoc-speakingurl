@@ -1,9 +1,14 @@
-# api documentation for  [speakingurl (v13.0.0)](http://pid.github.io/speakingurl/)  [![npm package](https://img.shields.io/npm/v/npmdoc-speakingurl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-speakingurl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-speakingurl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-speakingurl)
+# npmdoc-speakingurl
+
+#### api documentation for  [speakingurl (v13.0.0)](http://pid.github.io/speakingurl/)  [![npm package](https://img.shields.io/npm/v/npmdoc-speakingurl.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-speakingurl) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-speakingurl.svg)](https://travis-ci.org/npmdoc/node-npmdoc-speakingurl)
+
 #### Generate a slug – transliteration with a lot of options
 
-[![NPM](https://nodei.co/npm/speakingurl.png?downloads=true)](https://www.npmjs.com/package/speakingurl)
+[![NPM](https://nodei.co/npm/speakingurl.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/speakingurl)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-speakingurl/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-speakingurl_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-speakingurl/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-speakingurl/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-speakingurl/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-speakingurl/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-speakingurl/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-speakingurl/build/screenCapture.npmPackageListing.svg)
 
@@ -18,7 +23,6 @@
 {
     "author": {
         "name": "Sascha Droste",
-        "email": "pid@posteo.net",
         "url": "https://twitter.com/SaschaDroste"
     },
     "bugs": {
@@ -100,13 +104,11 @@
     "main": "index",
     "maintainers": [
         {
-            "name": "pid",
-            "email": "sascha.droste@gmail.com"
+            "name": "pid"
         }
     ],
     "name": "speakingurl",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/%3Apid/speakingurl.git"
@@ -117,54 +119,9 @@
     "version": "13.0.0",
     "volo": {
         "url": "//cdnjs.cloudflare.com/ajax/libs/speakingurl/{version}/speakingurl.min.js"
-    }
+    },
+    "bin": {}
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module speakingurl](#apidoc.module.speakingurl)
-1.  [function <span class="apidocSignatureSpan">speakingurl.</span>createSlug (opts)](#apidoc.element.speakingurl.createSlug)
-
-
-
-# <a name="apidoc.module.speakingurl"></a>[module speakingurl](#apidoc.module.speakingurl)
-
-#### <a name="apidoc.element.speakingurl.createSlug"></a>[function <span class="apidocSignatureSpan">speakingurl.</span>createSlug (opts)](#apidoc.element.speakingurl.createSlug)
-- description and source-code
-```javascript
-function createSlug(opts) {
-
-<span class="apidocCodeCommentSpan">    /**
-     * getSlugWithConfig
-     * @param   {string} input string
-     * @return  {string} slug string
-     */
-</span>    return function getSlugWithConfig(input) {
-        return getSlug(input, opts);
-    };
-}
-```
-- example usage
-```shell
-...
-
-'''js
-var options = {
-	    maintainCase: true,
-	    separator: '_'
-	};
-
-var mySlug = require('speakingurl').createSlug(options);
-// in browser:
-// var mySlug = createSlug(options);
-
-var slug = mySlug("Schöner Titel läßt grüßen!? Bel été !");
-console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
-'''
-...
 ```
 
 
