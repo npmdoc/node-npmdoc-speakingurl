@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="http://pid.github.io/speakingurl/"
-
-    >speakingurl (v13.0.0)</a>
+    <a href="http://pid.github.io/speakingurl/">speakingurl (v13.0.0)</a>
 </h1>
-<h4>Generate a slug – transliteration with a lot of options</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<h4>Generate a slug â€“ transliteration with a lot of options</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.speakingurl">module speakingurl</a><ol>
 
@@ -117,9 +110,9 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function getSlug(input, opts) {
-    var separator = &#x27;-&#x27;;
-    var result = &#x27;&#x27;;
-    var diatricString = &#x27;&#x27;;
+    var separator = '-';
+    var result = '';
+    var diatricString = '';
     var convertSymbols = true;
     var customReplacements = {};
     var maintainCase;
@@ -136,23 +129,23 @@
     var l;
     var lastCharWasSymbol;
     var lastCharWasDiatric;
-    var allowedChars = &#x27;&#x27;;
+    var allowedChars = '';
 
-    if (typeof input !== &#x27;string&#x27;) {
-        return &#x27;&#x27;;
+    if (typeof input !== 'string') {
+        return '';
     }
 
-    if (typeof opts === &#x27;string&#x27;) {
+    if (typeof opts === 'string') {
         separator = opts;
     }
 
     symbol = symbolMap.en;
     langChar = langCharMap.en;
 
-    if (typeof opts === &#x27;object&#x27;) {
+    if (typeof opts === 'object') {
         maintainCase = opts.maintainCase || false;
-        customReplacements = (opts.custom &#x26;&#x26; typeof opts.custom === &#x27;object&#x27;) ? opts.custom : customReplacements;
-        truncate = (+opts.truncate &#x3e; 1 &#x26;&#x26; opts.truncate) || false;
+        customReplacements = (opts.custom &amp;&amp; typeof opts.custom === 'object') ? opts.custom : customReplacements;
+        truncate = (+opts.truncate &gt; 1 &amp;&amp; opts.truncate) || false;
         uricFlag = opts.uric || false;
         uricNoSlashFlag = opts.uricNoSlash || false;
         markFlag = opts.mark || false;
@@ -171,17 +164,17 @@
             allowedChars += markChars;
         }
 
-        symbol = (opts.lang &#x26;&#x26; symbolMap[opts.lang] &#x26;&#x26; convertSymbols) ?
+        symbol = (opts.lang &amp;&amp; symbolMap[opts.lang] &amp;&amp; convertSymbols) ?
             symbolMap[opts.lang] : (convertSymbols ? symbolMap.en : {});
 
-        langChar = (opts.lang &#x26;&#x26; langCharMap[opts.lang]) ?
+        langChar = (opts.lang &amp;&amp; langCharMap[opts.lang]) ?
             langCharMap[opts.lang] :
             opts.lang === false || opts.lang === true ? {} : langCharMap.en;
 
         // if titleCase config is an Array, rewrite to object format
-        if (opts.titleCase &#x26;&#x26; typeof opts.titleCase.length === &#x27;number&#x27; &#x26;&#x26; Array.prototype.toString.call(opts.titleCase)) {
+        if (opts.titleCase &amp;&amp; typeof opts.titleCase.length === 'number' &amp;&amp; Array.prototype.toString.call(opts.titleCase)) {
             opts.titleCase.forEach(function (v) {
-                customReplacements[v + &#x27;&#x27;] = v + &#x27;&#x27;;
+                customReplacements[v + ''] = v + '';
             });
 
             titleCase = true;
@@ -190,9 +183,9 @@
         }
 
         // if custom config is an Array, rewrite to object format
-        if (opts.custom &#x26;&#x26; typeof opts.custom.length === &#x27;number&#x27; &#x26;&#x26; Array.prototype.toString.call(opts.custom)) {
+        if (opts.custom &amp;&amp; typeof opts.custom.length === 'number' &amp;&amp; Array.prototype.toString.call(opts.custom)) {
             opts.custom.forEach(function (v) {
-                customReplacements[v + &#x27;&#x27;] = v + &#x27;&#x27;;
+                customReplacements[v + ''] = v + '';
             });
         }
 
@@ -200,10 +193,10 @@
         Object.keys(customReplacements).forEach(function (v) {
             var r;
 
-            if (v.length &#x3e; 1) {
-                r = new RegExp(&#x27;\\b&#x27; + escapeChars(v) + &#x27;\\b&#x27;, &#x27;gi&#x27;);
+            if (v.length &gt; 1) {
+                r = new RegExp('\\b' + escapeChars(v) + '\\b', 'gi');
             } else {
-                r = new RegExp(escapeChars(v), &#x27;gi&#x27;);
+                r = new RegExp(escapeChars(v), 'gi');
             }
 
             input = input.replace(r, customReplacements[v]);
@@ -221,27 +214,27 @@
     allowedChars = escapeChars(allowedChars);
 
     // trim whitespaces
-    input = input.replace(/(^\s+|\s+$)/g, &#x27;&#x27;);
+    input = input.replace(/(^\s+|\s+$)/g, '');
 
     lastCharWasSymbol = false;
     lastCharWasDiatric = false;
 
-    for (i = 0, l = input.length; i &#x3c; l; i++) {
+    for (i = 0, l = input.length; i &lt; l; i++) {
         ch = input[i];
 
         if (isReplacedCustomChar(ch, customReplacements)) {
-            // don&#x27;t convert a already converted char
+            // don't convert a already converted char
             lastCharWasSymbol = false;
         } else if (langChar[ch]) {
             // process language specific diactrics chars conversion
-            ch = lastCharWasSymbol &#x26;&#x26; langChar[ch].match(/[A-Za-z0-9]/) ? &#x27; &#x27; + langChar[ch] : langChar[ch];
+            ch = lastCharWasSymbol &amp;&amp; langChar[ch].match(/[A-Za-z0-9]/) ? ' ' + langChar[ch] : langChar[ch];
 
             lastCharWasSymbol = false;
         } else if (ch in charMap) {
             // the transliteration changes entirely when some special characters are added
-            if (i + 1 &#x3c; l &#x26;&#x26; lookAheadCharArray.indexOf(input[i + 1]) &#x3e;= 0) {
+            if (i + 1 &lt; l &amp;&amp; lookAheadCharArray.indexOf(input[i + 1]) &gt;= 0) {
                 diatricString += ch;
-                ch = &#x27;&#x27;;
+                ch = '';
             } else if (lastCharWasDiatric === true) {
                 ch = diatricMap[diatricString] + charMap[c ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -272,14 +265,14 @@
 ```js
 var options = {
 	    maintainCase: true,
-	    separator: &#x27;_&#x27;
+	    separator: '_'
 	};
 
-var mySlug = require(&#x27;speakingurl&#x27;).<span class="apidocCodeKeywordSpan">createSlug</span>(options);
+var mySlug = require('speakingurl').<span class="apidocCodeKeywordSpan">createSlug</span>(options);
 // in browser:
 // var mySlug = createSlug(options);
 
-var slug = mySlug(&#x22;Schöner Titel läßt grüßen!? Bel été !&#x22;);
+var slug = mySlug("SchÃ¶ner Titel lÃ¤ÃŸt grÃ¼ÃŸen!? Bel Ã©tÃ© !");
 console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
 ```
 ...</pre></li>
@@ -300,9 +293,9 @@ console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function getSlug(input, opts) {
-    var separator = &#x27;-&#x27;;
-    var result = &#x27;&#x27;;
-    var diatricString = &#x27;&#x27;;
+    var separator = '-';
+    var result = '';
+    var diatricString = '';
     var convertSymbols = true;
     var customReplacements = {};
     var maintainCase;
@@ -319,23 +312,23 @@ console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
     var l;
     var lastCharWasSymbol;
     var lastCharWasDiatric;
-    var allowedChars = &#x27;&#x27;;
+    var allowedChars = '';
 
-    if (typeof input !== &#x27;string&#x27;) {
-        return &#x27;&#x27;;
+    if (typeof input !== 'string') {
+        return '';
     }
 
-    if (typeof opts === &#x27;string&#x27;) {
+    if (typeof opts === 'string') {
         separator = opts;
     }
 
     symbol = symbolMap.en;
     langChar = langCharMap.en;
 
-    if (typeof opts === &#x27;object&#x27;) {
+    if (typeof opts === 'object') {
         maintainCase = opts.maintainCase || false;
-        customReplacements = (opts.custom &#x26;&#x26; typeof opts.custom === &#x27;object&#x27;) ? opts.custom : customReplacements;
-        truncate = (+opts.truncate &#x3e; 1 &#x26;&#x26; opts.truncate) || false;
+        customReplacements = (opts.custom &amp;&amp; typeof opts.custom === 'object') ? opts.custom : customReplacements;
+        truncate = (+opts.truncate &gt; 1 &amp;&amp; opts.truncate) || false;
         uricFlag = opts.uric || false;
         uricNoSlashFlag = opts.uricNoSlash || false;
         markFlag = opts.mark || false;
@@ -354,17 +347,17 @@ console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
             allowedChars += markChars;
         }
 
-        symbol = (opts.lang &#x26;&#x26; symbolMap[opts.lang] &#x26;&#x26; convertSymbols) ?
+        symbol = (opts.lang &amp;&amp; symbolMap[opts.lang] &amp;&amp; convertSymbols) ?
             symbolMap[opts.lang] : (convertSymbols ? symbolMap.en : {});
 
-        langChar = (opts.lang &#x26;&#x26; langCharMap[opts.lang]) ?
+        langChar = (opts.lang &amp;&amp; langCharMap[opts.lang]) ?
             langCharMap[opts.lang] :
             opts.lang === false || opts.lang === true ? {} : langCharMap.en;
 
         // if titleCase config is an Array, rewrite to object format
-        if (opts.titleCase &#x26;&#x26; typeof opts.titleCase.length === &#x27;number&#x27; &#x26;&#x26; Array.prototype.toString.call(opts.titleCase)) {
+        if (opts.titleCase &amp;&amp; typeof opts.titleCase.length === 'number' &amp;&amp; Array.prototype.toString.call(opts.titleCase)) {
             opts.titleCase.forEach(function (v) {
-                customReplacements[v + &#x27;&#x27;] = v + &#x27;&#x27;;
+                customReplacements[v + ''] = v + '';
             });
 
             titleCase = true;
@@ -373,9 +366,9 @@ console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
         }
 
         // if custom config is an Array, rewrite to object format
-        if (opts.custom &#x26;&#x26; typeof opts.custom.length === &#x27;number&#x27; &#x26;&#x26; Array.prototype.toString.call(opts.custom)) {
+        if (opts.custom &amp;&amp; typeof opts.custom.length === 'number' &amp;&amp; Array.prototype.toString.call(opts.custom)) {
             opts.custom.forEach(function (v) {
-                customReplacements[v + &#x27;&#x27;] = v + &#x27;&#x27;;
+                customReplacements[v + ''] = v + '';
             });
         }
 
@@ -383,10 +376,10 @@ console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
         Object.keys(customReplacements).forEach(function (v) {
             var r;
 
-            if (v.length &#x3e; 1) {
-                r = new RegExp(&#x27;\\b&#x27; + escapeChars(v) + &#x27;\\b&#x27;, &#x27;gi&#x27;);
+            if (v.length &gt; 1) {
+                r = new RegExp('\\b' + escapeChars(v) + '\\b', 'gi');
             } else {
-                r = new RegExp(escapeChars(v), &#x27;gi&#x27;);
+                r = new RegExp(escapeChars(v), 'gi');
             }
 
             input = input.replace(r, customReplacements[v]);
@@ -404,27 +397,27 @@ console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
     allowedChars = escapeChars(allowedChars);
 
     // trim whitespaces
-    input = input.replace(/(^\s+|\s+$)/g, &#x27;&#x27;);
+    input = input.replace(/(^\s+|\s+$)/g, '');
 
     lastCharWasSymbol = false;
     lastCharWasDiatric = false;
 
-    for (i = 0, l = input.length; i &#x3c; l; i++) {
+    for (i = 0, l = input.length; i &lt; l; i++) {
         ch = input[i];
 
         if (isReplacedCustomChar(ch, customReplacements)) {
-            // don&#x27;t convert a already converted char
+            // don't convert a already converted char
             lastCharWasSymbol = false;
         } else if (langChar[ch]) {
             // process language specific diactrics chars conversion
-            ch = lastCharWasSymbol &#x26;&#x26; langChar[ch].match(/[A-Za-z0-9]/) ? &#x27; &#x27; + langChar[ch] : langChar[ch];
+            ch = lastCharWasSymbol &amp;&amp; langChar[ch].match(/[A-Za-z0-9]/) ? ' ' + langChar[ch] : langChar[ch];
 
             lastCharWasSymbol = false;
         } else if (ch in charMap) {
             // the transliteration changes entirely when some special characters are added
-            if (i + 1 &#x3c; l &#x26;&#x26; lookAheadCharArray.indexOf(input[i + 1]) &#x3e;= 0) {
+            if (i + 1 &lt; l &amp;&amp; lookAheadCharArray.indexOf(input[i + 1]) &gt;= 0) {
                 diatricString += ch;
-                ch = &#x27;&#x27;;
+                ch = '';
             } else if (lastCharWasDiatric === true) {
                 ch = diatricMap[diatricString] + charMap[c ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -455,14 +448,14 @@ console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
 ```js
 var options = {
 	    maintainCase: true,
-	    separator: &#x27;_&#x27;
+	    separator: '_'
 	};
 
-var mySlug = require(&#x27;speakingurl&#x27;).<span class="apidocCodeKeywordSpan">createSlug</span>(options);
+var mySlug = require('speakingurl').<span class="apidocCodeKeywordSpan">createSlug</span>(options);
 // in browser:
 // var mySlug = createSlug(options);
 
-var slug = mySlug(&#x22;Schöner Titel läßt grüßen!? Bel été !&#x22;);
+var slug = mySlug("SchÃ¶ner Titel lÃ¤ÃŸt grÃ¼ÃŸen!? Bel Ã©tÃ© !");
 console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
 ```
 ...</pre></li>
@@ -477,3 +470,4 @@ console.log(slug); // Output: Schoener_Titel_laesst_gruessen_Bel_ete
     ]
 </div>
 </div>
+</body></html>
